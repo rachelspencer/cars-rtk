@@ -3,9 +3,11 @@ import { removeCar } from '../store';
 
 function CarList () {
     const dispatch = useDispatch();
+    const cars = useSelector(({ cars: { data, searchTerm }}) => {
 
-    const cars = useSelector((state) => {
-        return state.cars.data;
+        return data.filter((car) => 
+            car.name.toLowerCase().includes(searchTerm.toLowerCase())
+            );
     });
 
     const handleCarDelete = (car) => {
